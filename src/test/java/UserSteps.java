@@ -9,4 +9,8 @@ public class UserSteps extends ScenarioSteps {
     public void login(String userEmail, String userPassword) {
         landingPage.login(userEmail, userPassword);
     }
+
+    public String getAlertMessageText() {
+        return landingPage.getAlertMessageText();
+    }
 }

@@ -2,6 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,9 @@ public class LoginTest {
 
     @Test
     public void negativeLoginTest() {
-        webDriver.get("https://www.linkedin.com/");
-        userSteps.login("a@b.c", "P@ssword");
+        String shortPasswordError = "The password you provided must have at least 6 characters";
+        webDriver.get(userSteps.landingPage.pageLink);
+        userSteps.login("a@b.c", "d");
+        Assert.assertEquals( "Check alert for short Password:", shortPasswordError, userSteps.getAlertMessageText());
     }
 }
