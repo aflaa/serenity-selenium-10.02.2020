@@ -20,13 +20,13 @@ public class LoginTest {
     WebDriver webDriver;
 
     @Steps
-    UserSteps userSteps;
+    UserSteps user;
 
     @Test
     public void negativeLoginTest() {
-        String shortPasswordError = "The password you provided must have at least 6 characters";
-        webDriver.get(userSteps.landingPage.pageLink);
-        userSteps.login("a@b.c", "d");
-        Assert.assertEquals( "Check alert for short Password:", shortPasswordError, userSteps.getAlertMessageText());
+        String headerMessage = "Don't miss your next opportunity. Sign in to stay updated on your professional world.";
+        user
+                .login("a@b.c", "P@ssword")
+                .validatePageHeader(headerMessage);
     }
 }
