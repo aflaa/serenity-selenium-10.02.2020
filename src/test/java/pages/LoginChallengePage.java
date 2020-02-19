@@ -9,7 +9,7 @@ public class LoginChallengePage extends PageObject {
     @FindBy(xpath = "//h1/../p")
     public WebElement headerMessage;
 
-//    public String getHeaderMessageText() {
-//        return headerMessage.getText();
-//    }
+    public String getHeaderMessageText() {
+        return headerMessage.getText();
+    }
 }
