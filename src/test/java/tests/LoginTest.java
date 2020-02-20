@@ -12,6 +12,7 @@ public class LoginTest extends BaseTest {
     public void negativeLoginTest() {
         String headerMessage = "Don't miss your next opportunity. Sign in to stay updated on your professional world.";
         user
+                .auth()
                 .login("a@b.c", "P@ssword")
                 .validatePageHeader(headerMessage);
     }

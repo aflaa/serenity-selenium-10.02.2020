@@ -12,19 +12,24 @@ public class SearchTest extends BaseTest {
 
     @Before
     public void before() {
-        user.login("", "");
-
+        user
+                .auth()
+                .login(userEmail, userPW);
     }
 
     @Test
     public void searchBySearchTermTest() {
-
         String searchTerm = "hr";
         user
-                .login(userEmail, userPW)
-                .validateSucceedLogin()
-                .searchForTerm(searchTerm)
-        // .validateSearchResult(searchTerm)
+                .validatePageTitle("LinkedIn")
+                .homePage()
+                .validateHomePageIsLoaded()
+                .searchFor(searchTerm);
+        user
+                .validatePageTitle("Search | LinkedIn")
+                .searchPage()
+                .validateSearchPageIsLoaded()
+                .validateEachResultContains(searchTerm)
         ;
     }
 }

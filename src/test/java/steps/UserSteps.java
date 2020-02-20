@@ -1,68 +1,35 @@
 package steps;
 
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.junit.Assert;
-import pages.HomePage;
-import pages.LandingPage;
-import pages.LoginChallengePage;
-import pages.SearchPage;
 
-import java.util.List;
-
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 
 public class UserSteps extends ScenarioSteps {
 
-    private LandingPage landingPage;
-    private LoginChallengePage loginChallengePage;
-    private HomePage homePage;
+    @Steps
+    LoginSteps loginSteps;
+    HomeSteps homeSteps;
+    SearchSteps searchSteps;
+    UserSteps userSteps;
 
-    @Step
-    public UserSteps login(String userEmail, String userPassword) {
-        landingPage.open();
-        landingPage.login(userEmail, userPassword);
-        waitABit(60000);
-        return this;
+    public LoginSteps auth() {
+        return loginSteps;
+    }
+
+    public HomeSteps homePage() {
+        return homeSteps;
+    }
+
+    public SearchSteps searchPage() {
+        return searchSteps;
     }
 
     @Step
-    public UserSteps validatePageHeader(String expectedMessage) {
-      //  String actualMessage = loginChallengePage.element(loginChallengePage.headerMessage).getText();
-        Assert.assertEquals("Wrong header message:", expectedMessage,
-                //actualMessage
-                loginChallengePage.getHeaderMessageText()
-        );
+    public UserSteps validatePageTitle(String pageTitle) {
+        Assert.assertThat("Wrong page title", getDriver().getTitle(), is(pageTitle));
         return this;
     }
-
-    @Step
-    public UserSteps validateSucceedLogin() {
-        Assert.assertTrue("Home page is not loaded", homePage.isPageLoaded());
-        return this;
-    }
-
-    @Step
-    public UserSteps searchForTerm(String searchTerm) {
-        homePage.searchForTerm(searchTerm);
-        return this;
-
-    }
-//    @Step
-//    public void validateSearchResult(String searchTerm) {
-//        List<String> resultTitles = SearchPage.getResultTitles();
-//        resultTitles.stream().forEach(assertThat(title.contains(searchTerm)));
-//    }
-
-//    @Step
-//    public void validateSearchResult() {
-//        Assert.assertEquals(SearchPage.getSearchResultsNumber(), 8359729, "Wrong number of search results on Search Page");
-//
-//        List<String> searchResultsList = SearchPage.getSearchReasultList();
-//
-//        for (String searchResult : searchResultsList) {
-//            Assert.assertTrue(searchResult.toLowerCase().contains(searchTerm.toLowerCase()),
-//                    "SearchTerm " + searchTerm + " not found in:\n" + searchResult);
-//        }
-//    }
 }
