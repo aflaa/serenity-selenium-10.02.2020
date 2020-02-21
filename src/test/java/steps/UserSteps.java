@@ -11,8 +11,11 @@ public class UserSteps extends ScenarioSteps {
 
     @Steps
     LoginSteps loginSteps;
+    @Steps
     HomeSteps homeSteps;
+    @Steps
     SearchSteps searchSteps;
+
     UserSteps userSteps;
 
     public LoginSteps auth() {

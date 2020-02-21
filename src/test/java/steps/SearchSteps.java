@@ -2,6 +2,7 @@ package steps;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.junit.Assert;
 import pages.SearchPage;
 
 public class SearchSteps extends ScenarioSteps {
@@ -14,7 +15,9 @@ public class SearchSteps extends ScenarioSteps {
         return searchSteps;
     }
 
+    @Step
     public SearchSteps validateSearchPageIsLoaded() {
-        return searchSteps;
+        Assert.assertTrue("Search page is not loaded", searchPage.isPageLoaded());
+        return this;
     }
 }
