@@ -27,7 +27,7 @@ public class SearchPage extends PageObject {
         }
     }
 
-    public List<String> getSearchResultList() {
+    public List<String> getSearchResulstList() {
         List<String> searchResultList = new ArrayList<>();
         for (WebElement searchResult : searchResults) {
             evaluateJavascript("arguments[0].scrollIntoView();", searchResult);

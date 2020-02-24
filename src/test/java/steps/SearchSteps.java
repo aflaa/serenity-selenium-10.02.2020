@@ -2,10 +2,13 @@ package steps;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.hamcrest.core.Every;
 import org.junit.Assert;
 import pages.SearchPage;
 
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.containsString;
 
 public class SearchSteps extends ScenarioSteps {
     private SearchSteps searchSteps;
@@ -14,12 +17,9 @@ public class SearchSteps extends ScenarioSteps {
     @Step
     public SearchSteps validateEachResultContains(String searchTerm) {
 
-        List<String> searchResultsList = searchPage.getSearchResultList();
+        List<String> searchResultsList = searchPage.getSearchResulstList();
 
-        for (String searchResult : searchResultsList) {
-            Assert.assertTrue("SearchTerm " + searchTerm+ " not found in:\n" + searchResult,
-                    searchResult.toLowerCase().contains(searchTerm.toLowerCase()));
-        }
+        Assert.assertThat("SearchTerm " + searchTerm+ " not found \n", searchResultsList, Every.everyItem(containsString(searchTerm)));
         return searchSteps;
     }
 

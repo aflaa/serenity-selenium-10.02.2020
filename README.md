@@ -8,3 +8,4 @@ Download chromedriver.exe and copy it to System32 (or create Path in variables).
 Add Dependancy for Test NG https://mvnrepository.com/artifact/org.testng/testng
 Download and install GIT from https://gitforwindows.org/. Check Path variable with GIT.
 Port 8080 should be opened (use VPN).
+To generate Serenity report manually execute: 'mvn serenity:aggregate'
