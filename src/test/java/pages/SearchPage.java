@@ -27,12 +27,12 @@ public class SearchPage extends PageObject {
         }
     }
 
-    public List<String> validateEachResultContains (String searchTerm) {
-        List<String> SearchReasultList = new ArrayList<String>(); //must be initialized to use add method later
+    public List<String> getSearchResultList() {
+        List<String> searchResultList = new ArrayList<>();
         for (WebElement searchResult : searchResults) {
-            ((JavascriptExecutor)getDriver()).executeScript("arguments[0].scrollIntoView();", searchResult); //scroll to each searchResult
-            SearchReasultList.add(searchResult.getText());
+            evaluateJavascript("arguments[0].scrollIntoView();", searchResult);
+            searchResultList.add(searchResult.getText());
         }
-        return SearchReasultList;
+        return searchResultList;
     }
 }

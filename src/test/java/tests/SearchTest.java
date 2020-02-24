@@ -26,7 +26,7 @@ public class SearchTest extends BaseTest {
                 .validateHomePageIsLoaded()
                 .searchFor(searchTerm);
         user
-                .validatePageTitle("\"hr\" | Search | LinkedIn")
+                .validatePageTitle("\""+ searchTerm + "\" | Search | LinkedIn")
                 .searchPage()
                 .validateSearchPageIsLoaded()
                 .validateEachResultContains(searchTerm)
