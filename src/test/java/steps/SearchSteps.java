@@ -9,6 +9,7 @@ import pages.SearchPage;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.core.IsIterableContaining.hasItems;
 
 public class SearchSteps extends ScenarioSteps {
     private SearchSteps searchSteps;
@@ -19,10 +20,19 @@ public class SearchSteps extends ScenarioSteps {
 
         List<String> searchResultsList = searchPage.getSearchResulstList();
 
-        Assert.assertThat("SearchTerm " + searchTerm+ " not found \n", searchResultsList, Every.everyItem(containsString(searchTerm)));
+        Assert.assertThat("SearchTerm " + searchTerm+
+                " not found \n", searchResultsList, Every.everyItem(containsString(searchTerm)));
         return searchSteps;
     }
 
+    @Step
+    public SearchSteps validateEachResultContains(String[] searchTerms) {
+
+        List<String> searchResultsList = searchPage.getSearchResulstList();
+
+       // Assert.assertThat("SearchTerm " + searchTerms+  " not found \n", searchResultsList, Every.everyItem(hasItems(searchTerms));
+        return searchSteps;
+    }
     @Step
     public SearchSteps validateSearchPageIsLoaded() {
         Assert.assertTrue("Search page is not loaded", searchPage.isPageLoaded());

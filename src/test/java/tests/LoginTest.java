@@ -7,12 +7,12 @@ import org.junit.runner.RunWith;
 @RunWith(SerenityRunner.class)
 public class LoginTest extends BaseTest {
 
-
     @Test
     public void negativeLoginTest() {
         String headerMessage = "Don't miss your next opportunity. Sign in to stay updated on your professional world.";
         user
                 .auth()
+                .openLandingPage()
                 .login("a@b.c", "P@ssword")
                 .validatePageHeader(headerMessage);
     }
