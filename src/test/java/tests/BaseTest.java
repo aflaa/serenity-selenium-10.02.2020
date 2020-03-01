@@ -13,7 +13,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
 
-    @Managed(driver = "firefox") //"chrome")
+    @Managed(driver = "chrome") //"firefox") //"chrome")
     WebDriver webDriver;
 
     @Steps

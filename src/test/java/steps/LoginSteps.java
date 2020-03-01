@@ -19,7 +19,7 @@ public class LoginSteps extends ScenarioSteps {
         return this;
     }
 
-    @When("I login with username 'user' and password 'pass'")
+    @When("I login with username $userEmail and password $userPassword")
     @Step
     public LoginSteps login(String userEmail, String userPassword) {
         landingPage.login(userEmail, userPassword);
