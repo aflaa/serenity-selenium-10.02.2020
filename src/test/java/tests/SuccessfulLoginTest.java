@@ -18,8 +18,8 @@ public class SuccessfulLoginTest extends BaseTest {
     public static Collection<Object[]> testData() {
         return Arrays.asList(new Object[][]{
                 {"altestqa@gmail.com", "Aqqq2222"},
-                {"ALTESTQA@GMAIL.COM", "Aqqq2222"},
-                {"ALTESTQA@gmail.com", "Aqqq2222"}
+               // {"ALTESTQA@GMAIL.COM", "Aqqq2222"},
+               // {"ALTESTQA@gmail.com", "Aqqq2222"}
         });
     }
 

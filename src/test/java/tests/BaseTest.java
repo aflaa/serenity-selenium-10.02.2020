@@ -10,10 +10,11 @@ import steps.UserSteps;
 public class BaseTest {
     @BeforeClass
     public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver()//.version("80")
+                .setup();
     }
 
-    @Managed(driver = "chrome") //"firefox") //"chrome")
+    @Managed(driver = "chrome") //"firefox")
     WebDriver webDriver;
 
     @Steps
