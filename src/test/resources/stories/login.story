@@ -12,12 +12,12 @@ Narrative:
 Lifecycle:
 Before:
 Scope:SCENARIO
-Given I open Landing page
+
 
 Scenario: Successful login
 Meta:
 @login01
-
+Given I open Landing page
 When I login with username userEmail and password userPassword
 Then I should see Home page
 
