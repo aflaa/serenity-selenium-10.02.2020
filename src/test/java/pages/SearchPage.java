@@ -35,4 +35,5 @@ public class SearchPage extends PageObject {
         }
         return searchResultList;
     }
+
 }

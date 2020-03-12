@@ -2,6 +2,8 @@ package steps;
 
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.jbehave.core.annotations.BeforeStory;
+import org.jbehave.core.annotations.Composite;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.When;
 import org.junit.Assert;
@@ -13,6 +15,7 @@ public class LoginSteps extends ScenarioSteps {
     private LoginChallengePage loginChallengePage;
 
     @Given("I open Landing page")
+    @BeforeStory
     @Step
     public LoginSteps openLandingPage() {
         landingPage.open();
@@ -20,6 +23,7 @@ public class LoginSteps extends ScenarioSteps {
     }
 
     @When("I login with username $userEmail and password $userPassword")
+    @Given("I login with username $userEmail and password $userPassword")
     @Step
     public LoginSteps login(String userEmail, String userPassword) {
         landingPage.login(userEmail, userPassword);
