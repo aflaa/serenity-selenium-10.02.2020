@@ -1,0 +1,1 @@
+show tables from  92JgseRu78 like 'MyPet';

@@ -7,9 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 
 public class MySQLDBManager {
 
@@ -42,13 +43,52 @@ public class MySQLDBManager {
         return IOUtils.toString(inputStream, StandardCharsets.UTF_8);
     }
 
+
     public static ResultSet executeQuery(String filePath) throws SQLException, IOException {
         Connection connection = createConnection();
         String query = getQueryFromFile(filePath);
         //stmt.executeLargeUpdate("CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20), species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);");
         ResultSet resultSet = connection.createStatement().executeQuery(query);
+        queryResult(resultSet);
         closeConnection(connection);
         return resultSet;
     }
-}
 
+    public static boolean tableExists(String filePath) throws SQLException, IOException {
+        Connection connection = createConnection();
+        String query = getQueryFromFile(filePath);
+        boolean tableExist = connection.createStatement().executeQuery(query).next();
+        closeConnection(connection);
+        return tableExist;
+    }
+
+
+    public static int updateStatement(String filePath) throws SQLException, IOException {
+        Connection connection = createConnection();
+        String query = getQueryFromFile(filePath);
+        int resultSet = connection.createStatement().executeUpdate(query);
+        System.out.println("Statement returns: " + resultSet);
+        closeConnection(connection);
+        return resultSet;
+    }
+
+    private static ArrayList<String[]> queryResult(ResultSet rs) throws SQLException {
+        ArrayList<String[]> result = new ArrayList<String[]>();
+        int columnCount = rs.getMetaData().getColumnCount();
+        int rowCount = 0;
+        String resultRow = "";
+        while (rs.next()) {
+            String[] row = new String[columnCount];
+            for (int i = 0; i < columnCount; i++) {
+                row[i] = rs.getString(i + 1);
+                resultRow = resultRow.concat(row[i] + " ");
+            }
+            System.out.println("row is " + resultRow);
+            resultRow = "";
+            result.add(row);
+            rowCount = rowCount + 1;
+        }
+        System.out.println("row count is " + rowCount);
+        return result;
+    }
+}
