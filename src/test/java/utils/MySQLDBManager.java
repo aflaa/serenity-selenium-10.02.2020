@@ -17,8 +17,8 @@ public class MySQLDBManager {
     private MySQLDBManager() { // private
     }
 
-    private final static String USER_NAME = "92JgseRu78";
-    private final static String USER_PASSWORD = "Gq8QccN8Eb";
+    private final static String USER_NAME = "JocGu8wGCl"; //92JgseRu78;
+    private final static String USER_PASSWORD = "CMkDzTsuTd"; //Gq8QccN8Eb;
     private final static String SERVER_NAME = "remotemysql.com";
     private final static int SERVER_PORT = 3306;
     private final static String DB_NAME = USER_NAME;

@@ -1,1 +1,1 @@
-show tables from  92JgseRu78 like 'MyPet';
+show tables from  JocGu8wGCl like 'MyPet';
